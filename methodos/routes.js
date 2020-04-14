@@ -1,17 +1,16 @@
 const express = require('express');
-const routes = express.Router();
-const UserController = require('./Controller/User')
-const ModeloController = require('./Controller/Modelo')
-const MarcaController = require('./Controller/Marca')
-const VeiculoController = require('./Controller/Veiculo')
+const UploadConfig = require('./config/upload');
+const UserController = require('./Controller/User');
+const ModeloController = require('./Controller/Modelo');
+const MarcaController = require('./Controller/Marca');
+const VeiculoController = require('./Controller/Veiculo');
 
-routes.get('/',function(req, res){
-    res.send("Hello word");
-})
+const routes = express.Router();
+const upload = multer(UploadConfig);
 
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-routes.post('/users', UserController.store);
+routes.post('/users', upload.single('thumb'), UserController.store);
 routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id',UserController.destroy);
 

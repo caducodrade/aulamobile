@@ -35,10 +35,10 @@ module.exports = {
         const localidade = data.localidade;
         const uf = data.uf;
         const ibge = data.ibge;
-        const user_id = data.user_id;
-        Endereco.create({cep, logradouro, complemento, bairro, localidade, uf, ibge, user_id});
-    });
-    return res.json(endereco);
+        let {user_id} = req.headers;
+        let aux = await Endereco.create({cep, logradouro, complemento, bairro, localidade, uf, ibge, user_id});
+        return res.json(aux);
+    });    
   },
   
   //update pega o id, busca no banco esse registro, alreta ele no controlador e manda gravar
