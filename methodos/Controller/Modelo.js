@@ -17,9 +17,9 @@ module.exports = {
 
   //Store usa o methodo POST para gravar
   async store(req, res){
-    //passa os dados que veio do post para uma variavel
+    
     const nome = req.body.nome;    
-    //busca se ja tem algum usuaro com esse email
+    const thumb = req.file.filename;
     let modelo = await Modelo.findOne({nome});
     //compara se houve resultado
     if(!modelo){
@@ -35,7 +35,7 @@ module.exports = {
     let modelo = await Modelo.findOne({_id : req.params.id});
     //edito os registros
     user.nome = "corolla";    
-    //atualiza os dados no banco
+    user.thumb = req.file.filename;
     modelo = await User.update(modelo);
 
     return res.json(modelo);

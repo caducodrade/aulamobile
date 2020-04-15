@@ -8,7 +8,16 @@ const VeiculosSchema =  new mongoose.Schema({
     combustivel : String, 
     ano_fabricacao : Number, 
     ano_modelo : Number, 
-    placa : String
+    thumb: String,
+    placa : String,
+    marca_id : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Marca'
+    },
+    modelo_id : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Modelo'
+    },
 });
 
 module.exports = mongoose.model('Veiculos', VeiculosSchema);

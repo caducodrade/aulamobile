@@ -24,14 +24,19 @@ module.exports = {
     const cor = req.body.cor;
     const combustivel = req.body.combustivel;
     const ano_fabricacao = req.body.ano_fabricacao;
-    const ano_modelo = req.body.ano_modelo;
+    const ano_modelo = req.body.ano_modelo;    
     const placa = req.body.placa;
-    //busca se ja tem algum usuario com esse email
+    //const thumb = req.file.filename; 
+    const marca_id = req.body.marca_id; 
+    const modelo_id = req.body.modelo_id;
+    
     let veiculo = await Veiculo.findOne({placa});
-    //compara se houve resultado
+    
     if(!veiculo){
       //se nao houver resultado grava o novo usuario
-      veiculo = await Veiculo.create({nome,motor,portas,cor,combustivel,ano_fabricacao,ano_modelo,placa});
+      veiculo = await Veiculo.create({nome,motor,portas,cor,combustivel,ano_fabricacao,ano_modelo,placa,thumb,marca_id,modelo_id});
+    }else{
+      return res.status(400).json({error : "Veiculo já cadastrado!"});
     }
     return res.json(veiculo);
   },
@@ -41,14 +46,15 @@ module.exports = {
     //recupero o registro
     let veiculo = await Veiculo.findOne({_id : req.params.id});
     //edito os registros
-    user.nome = "agile";
-    user.motor = "agile";
-    user.portas = "agile";
-    user.cor = "agile";
-    user.combustivel = "agile";
-    user.ano_fabricacao = "agile";
-    user.ano_modelo = "agile";
-    user.placa = "agile";
+    user.nome = req.body.nome;
+    user.motor = req.body.motor;
+    user.portas = req.body.portas;
+    user.cor = req.body.cor ;
+    user.combustivel = req.body.combustivel;
+    user.ano_fabricacao = req.body.ano_fabricacao;
+    user.ano_modelo = req.body.ano_modelo;
+    user.placa = req.body.placa;
+    //user.thumb = req.file.filename;
     //atualiza os dados no banco
     veiculo = await User.update(veiculo);
 

@@ -10,7 +10,7 @@ module.exports = {
 
   //show traz um registro onde o id do registro é igual ao id assado na url
   async show(req, res){
-    //Busca um registro no banco
+    
     let marca = await Marca.findOne({_id : req.params.id});
     return res.json(marca);
   },
@@ -19,6 +19,7 @@ module.exports = {
   async store(req, res){
     //passa os dados que veio do post para uma variavel
     const nome = req.body.nome;    
+    const thumb = req.file.filename; 
     //busca se ja tem algum usuaro com esse email
     let marca = await Marca.findOne({nome});
     //compara se houve resultado
@@ -35,6 +36,7 @@ module.exports = {
     let marca = await Marca.findOne({_id : req.params.id});
     //edito os registros
     user.nome = "ford";    
+    user.thumb = req.file.filename;
     //atualiza os dados no banco
     marca = await User.update(marca);
 

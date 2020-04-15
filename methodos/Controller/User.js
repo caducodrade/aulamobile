@@ -18,9 +18,10 @@ module.exports = {
 
   //Store usa o methodo POST para gravar
   async store(req, res){
-    
-    Console.log(req.file);
-    
+ 
+    console.log(req.file);
+
+    //passa os dados que veio do post para uma variavel
     const nome = req.body.nome;
     const senha = req.body.senha;
     const email = req.body.email;
@@ -32,10 +33,10 @@ module.exports = {
     //compara se houve resultado
     if(!user){
       //se nao houver resultado grava o novo usuario
-      user = await User.create({nome,senha,email,status,idade,thumb});   
+      user = await User.create({nome,senha,email,status,idade,thumb});
       return res.json(user);
     }else{
-      return res.status(400).json({error : "Usuario já cadastrado"});
+      return res.status(400).json({error : "Usuário já cadastrado!"});
     }
   },
   
@@ -47,9 +48,9 @@ module.exports = {
     user.nome = "Hericson Ramos Forti";
     user.email = "sis4web@gmal.com";
     user.senha = "senha123456";
+    user.thumb = req.file.filename;
     //atualiza os dados no banco
     user = await User.update(user);
-
     return res.json(user);
   },
 
