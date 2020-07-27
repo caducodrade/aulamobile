@@ -1,50 +1,60 @@
+//Vendor 
 const express = require('express');
-const multer = require('multer')
+const multer = require('multer');
 
-const UploadConfig = require('./config/upload');
-const UserController = require('./Controller/User');
-const ModeloController = require('./Controller/Modelo');
-const MarcaController = require('./Controller/Marca');
-const VeiculoController = require('./Controller/Veiculo');
+//Solicitação do nossos arquivos do MVC e config
+const UploadConfig       = require('./config/upload');
+const UserController     = require('./Controller/User');
+const ModeloController   = require('./Controller/Modelo');
 const EnderecoController = require('./Controller/Endereco');
+const MateriaController    = require('./Controller/Materia');
+const VeiculoController    = require('./Controller/Veiculo');
+
 
 const routes = express.Router();
 const upload = multer(UploadConfig);
 
-routes.get('/users', UserController.index);
-routes.get('/users/:id', UserController.show);
-routes.post('/users', upload.single('thumb'), UserController.store);
-routes.put('/users/:id', upload.single('thumb'), UserController.update);
-routes.delete('/users/:id',UserController.destroy);
+//Index =Listagem 
+//Show = Visualizar os dados gravados
+//Store = Gravar
+//Destroy = Delete
+//este exemplo é o mesmo da segundo exemplo só que simpificado
+//app.get('/', (req, res) => res.send('Hello World!'));
 
-routes.get('/modelos', ModeloController.index);
-routes.get('/modelos/:id', ModeloController.show);
-routes.post('/modelos', upload.single('thumb'), ModeloController.store);
-routes.put('/modelos/:id', upload.single('thumb'), ModeloController.update);
-routes.delete('/modelos/:id',ModeloController.destroy);
+//este exemplo completo de uma reuqisição simples
+routes.get('/',function(req, res){
+    res.send("Hello word");
+});
 
-routes.get('/marcas', MarcaController.index);
-routes.get('/marcas/:id', MarcaController.show);
-routes.post('/marcas', upload.single('thumb'), MarcaController.store);
-routes.put('/marcas/:id', upload.single('thumb'), MarcaController.update);
-routes.delete('/marcas/:id',MarcaController.destroy);
+routes.get('/users',          UserController.index);
+routes.post('/users/login',   UserController.login);
+routes.get('/users/:id',      UserController.show);
+routes.post('/users',         upload.single('thumb'),UserController.store);
+routes.put('/users/:id',      UserController.update);
+routes.delete('/users/:id',   UserController.destroy);
 
-routes.get('/veiculos', VeiculoController.index);
-routes.get('/veiculos/:id', VeiculoController.show);
-routes.post('/veiculos', upload.single('thumb'), VeiculoController.store);
-routes.put('/veiculos/:id', upload.single('thumb'), VeiculoController.update);
-routes.delete('/veiculos/:id',VeiculoController.destroy);
+routes.get('/modelo',         ModeloController.index);
+routes.get('/modelo/:id',     ModeloController.show);
+routes.post('/modelo',   upload.single('thumb'), ModeloController.store);
+routes.put('/modelo/:id',upload.single('thumb'), ModeloController.update);
+routes.delete('/modelo/:id',  ModeloController.destroy);
 
-routes.get('/veiculos', VeiculoController.index);
-routes.get('/veiculos/:id', VeiculoController.show);
-routes.post('/veiculos', VeiculoController.store);
-routes.put('/veiculos/:id', VeiculoController.update);
-routes.delete('/veiculos/:id',VeiculoController.destroy);
+routes.get('/materia',          MateriaController.index);
+routes.get('/materia/:id',      MateriaController.show);
+routes.post('/materia',         MateriaController.store);
+routes.put('/materia/:id',      MateriaController.update);
+routes.delete('/materia/:id',   MateriaController.destroy);
 
 routes.get('/endereco',       EnderecoController.index);
 routes.get('/endereco/:id',   EnderecoController.show);
 routes.post('/endereco',      EnderecoController.store);
 routes.put('/endereco/:id',   EnderecoController.update);
-routes.delete('/endereco/:id',EnderecoController.destroy);
+routes.delete('/endereco/:id',EnderecoController.destroy); 
+
+routes.get('/veiculo',        VeiculoController.index);
+routes.get('/veiculo/:id',    VeiculoController.show);
+routes.post('/veiculo',    upload.single('thumb'), VeiculoController.store);
+routes.put('/veiculo/:id', upload.single('thumb'), VeiculoController.update);
+routes.delete('/veiculo/:id', VeiculoController.destroy);
 
 module.exports = routes;

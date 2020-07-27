@@ -18,8 +18,7 @@ module.exports = {
   //Store usa o methodo POST para gravar
   async store(req, res){
     
-    const nome = req.body.nome;    
-    const thumb = req.file.filename;
+    const nome = req.body.nome;        
     let modelo = await Modelo.findOne({nome});
     //compara se houve resultado
     if(!modelo){

@@ -9,19 +9,28 @@ module.exports = {
     return res.json(users);
   },
 
+  async login(req, res){
+    //Busca todos os registross
+    console.log('busca usuario', req.body.email, req.body.senha)
+    let users = await User.findOne({
+                                    email : req.body.email.trim(),
+                                    senha : req.body.senha.trim()
+                                  });
+                                  console.log(users)
+    return res.json({users});
+  },
+
   //show traz um registro onde o id do registro é igual ao id assado na url
   async show(req, res){
     //Busca um registro no banco
     let user = await User.findOne({_id : req.params.id});
+    console.log
     return res.json(user);
   },
 
   //Store usa o methodo POST para gravar
   async store(req, res){
- 
-    console.log(req.file);
-
-    //passa os dados que veio do post para uma variavel
+     //passa os dados que veio do post para uma variavel
     const nome = req.body.nome;
     const senha = req.body.senha;
     const email = req.body.email;
@@ -45,10 +54,12 @@ module.exports = {
     //recupero o registro
     let user = await User.findOne({_id : req.params.id});
     //edito os registros
-    user.nome = "Hericson Ramos Forti";
-    user.email = "sis4web@gmal.com";
-    user.senha = "senha123456";
-    user.thumb = req.file.filename;
+    user.nome = req.body.nome;
+    user.email = req.body.email;
+    user.senha = req.body.senha;
+    user.status = req.body.status;
+    user.idade = req.body.idade;
+    //user.thumb = req.file.filename;
     //atualiza os dados no banco
     user = await User.update(user);
     return res.json(user);
