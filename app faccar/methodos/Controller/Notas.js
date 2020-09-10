@@ -34,8 +34,8 @@ module.exports = {
         notas.terceiroBim = req.body.terceiroBim;
         notas.quartoBim = req.body.quartoBim;
 
-        notas = await Notas.updateOne(notas);
-        return res.json(notas);
+        await Notas.updateOne(notas);
+        return res.status(202).json({success : "Notas atualizadas com sucesso."})
       },
 
     async destroy(req, res){
