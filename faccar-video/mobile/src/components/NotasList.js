@@ -1,17 +1,32 @@
-import React from 'react';
-import { Text, View , StyleSheet} from 'react-native';
+import React, { useState, useEffect} from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
-export default function NotasList( { materia } ){
-    return(
+import api from '../services/api';
+
+export default function NotasList( {item} ) {
+
+    const [materia, setMateria] = useState([]);
+
+    useEffect(() => {
+        buscaMateria(item.materia_id)
+    },[]);
+
+    async function buscaMateria(materia_id) {
+        const materia = await api.get('/materia' + materia_id);
+        setMateria(materia.data);
+    }
+
+    return (
         <View style={style.container}>
-            <Text  style={style.TableCellTitulo}> { materia } </Text>
-            <Text style={style.TableCell}>100</Text>
-            <Text style={style.TableCell}>100</Text>
-            <Text style={style.TableCell}>100</Text>
-            <Text style={style.TableCell}>100</Text>
-        </View>
+            <Text style={style.TableCellTitulo}> {materia.materia}  </Text>
+            <Text style={style.TableCell}>       {item.primeiroBim} </Text>
+            <Text style={style.TableCell}>       {item.segundoBim}  </Text>
+            <Text style={style.TableCell}>       {item.terceiroBim} </Text>
+            <Text style={style.TableCell}>       {item.quartoBim}   </Text>           
+        </View>       
+    
     )
-} 
+}
 
 const style = StyleSheet.create({ 
     container: {

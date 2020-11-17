@@ -8,7 +8,7 @@ const UserController     = require('./Controller/User');
 const NotasController   = require('./Controller/Notas');
 const EnderecoController = require('./Controller/Endereco');
 const MateriaController    = require('./Controller/Materia');
-//const VeiculoController    = require('./Controller/Veiculo');
+const ProtocoloController    = require('./Controller/Protocolos');
 
 
 const routes = express.Router();
@@ -45,16 +45,11 @@ routes.post('/materia',         MateriaController.store);
 routes.put('/materia/:id',      MateriaController.update);
 routes.delete('/materia/:id',   MateriaController.destroy);
 
-routes.get('/endereco',       EnderecoController.index);
-routes.get('/endereco/:id',   EnderecoController.show);
-routes.post('/endereco',      EnderecoController.store);
-routes.put('/endereco/:id',   EnderecoController.update);
-routes.delete('/endereco/:id',EnderecoController.destroy); 
 
-/*routes.get('/veiculo',        VeiculoController.index);
-routes.get('/veiculo/:id',    VeiculoController.show);
-routes.post('/veiculo',    upload.single('thumb'), VeiculoController.store);
-routes.put('/veiculo/:id', upload.single('thumb'), VeiculoController.update);
-routes.delete('/veiculo/:id', VeiculoController.destroy);*/
+routes.get('/protocolo',        ProtocoloController.index);
+routes.get('/protocolo/:id',    ProtocoloController.show);
+routes.post('/protocolo',       ProtocoloController.store);
+routes.put('/protocolo/:id',    ProtocoloController.update);
+routes.delete('/protocolo/:id', ProtocoloController.destroy);
 
 module.exports = routes;

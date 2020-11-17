@@ -53,7 +53,7 @@ export default function User( { navigation } ){
   return (     
   <SafeAreaView style = {style.container}>  
       <ScrollView  style={style.scrollView}>
-          <Image style = {style.picture} source = {require('../../assets/3429880.jpg')}/>
+          <Image style = {style.picture} />
       <View style ={style.form}>
       <Text style = {style.label}>Nome</Text>
           <TextInput 

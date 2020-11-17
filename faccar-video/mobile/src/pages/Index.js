@@ -20,6 +20,10 @@ export default function Index( { navigation } ){
         navigation.navigate('Notas')
     }
 
+    async function acessoProtocolos(){
+        navigation.navigate('Protocolos')
+    }
+
     function logoff(){
         alert('Voce Foi Deslogado')
         AsyncStorage.removeItem('_id')
@@ -47,7 +51,7 @@ export default function Index( { navigation } ){
                 <TouchableOpacity  style = {style.button}>
                     <Text style = {style.text}>Horários</Text>
                 </TouchableOpacity>
-                <TouchableOpacity  style = {style.button}>
+                <TouchableOpacity onPress = {acessoProtocolos} style = {style.button}>
                     <Text style = {style.text}>Protocolos</Text>
                 </TouchableOpacity>
             </View>

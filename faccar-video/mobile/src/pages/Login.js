@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import {View, Image, Text, TextInput, StyleSheet,TouchableOpacity, AsyncStorage,Alert} from 'react-native'
+import {View, Image, Text, TextInput, StyleSheet,TouchableOpacity, AsyncStorage, Alert} from 'react-native';
 
 import api from '../services/api';
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {SafeAreaView, ScrollView, Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';;
+import {SafeAreaView, ScrollView, Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';
 
-import StyleTemplate from '../../assets/Style/template'
-import NotasList from '../../src/components/NotasList'
+
+import NotasList from '../../src/components/NotasList';
 
 import api from '../services/api';
 
@@ -39,9 +39,9 @@ export default function Notas( {navigation} ){
                     {materias.map(item => <NotasList key={item._id} materia ={item.materia} />)}
                 </View>
                 <View>
-                <TouchableOpacity onPress={BackIndex}>
-                    <Text style = {style.back2Index} > Voltar</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={BackIndex}>
+                        <Text style = {style.back2Index} > Voltar</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </SafeAreaView>

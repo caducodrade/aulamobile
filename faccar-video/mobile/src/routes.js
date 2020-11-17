@@ -4,13 +4,15 @@ import Login from   './pages/Login';
 import Index from './pages/Index';
 import User from './pages/User';
 import Notas from './pages/Notas';
+import Protocolos from './pages/Protocolos';
 
 const Routes = createAppContainer(
     createSwitchNavigator({
         Login,
         Index,
         User,
-        Notas
+        Notas,
+        Protocolos
     })
 );
 

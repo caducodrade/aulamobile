@@ -10,7 +10,7 @@ const cors = require('cors');
 
 const app = express();
 const port = 3000;
-const hostname = "192.168.100.88";
+const hostname = "192.168.100.84";
 
 //Acessar site da Atlas Mongo DB - Criar uma conta e criar um cluster Free 
 mongoose.connect('mongodb+srv://Caio:253105@cluster0-mbjwu.mongodb.net/Biqueira?retryWrites=true&w=majority',
